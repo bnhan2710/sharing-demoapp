@@ -1,0 +1,1 @@
+// js for client socket page
