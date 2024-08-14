@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, './public')));
 require('./configs/database.connect')();
 
 //Set up routes
-// route(app);
+route(app);
 
 const PORT = process.env.PORT || 8000;
 
