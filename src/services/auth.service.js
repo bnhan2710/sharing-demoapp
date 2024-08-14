@@ -1,15 +1,17 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
-const { log } = require('console');
-
+const Account = require('../models/account.model.js');
 
 const register = async(data) =>{
     try {
         const { username, password, email } = data;
         const existingUser = await Account.findOne({username: username})
         if(existingUser){
-            return res.status(400).json({message: "Username is already existed!"})
+            return {
+                statusCode: 400,
+                message: 'Username already exists'
+            };
         }
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password, salt);
@@ -20,7 +22,10 @@ const register = async(data) =>{
             password:hashPassword
         })
         const user = await newAccount.save()
-        return res.status(200).json({message: "Register completed!"})
+        return{
+            statusCode:200,
+            message: 'Register succesfully!!'
+        }
     }
     catch(err) {
         throw new Error(err.message);
@@ -32,22 +37,27 @@ const login = async(data) => {
         const {username,password} = data;
         const foundUser = await Account.findOne({username})
         if(!foundUser) {
-            return res.status(400).json({message: "Wrong username or password"})
+            return {
+                statusCode: 400,
+                message: 'Invalid username'
+            };
         }
-        const match = bcrypt.compare(password,foundUser.password)
+        const match = await bcrypt.compare(password,foundUser.password)
         if(!match){
-            return res.status(400).json({message: "Wrong username or password"})
+            return {
+                statusCode: 401,
+                message: 'Password is incorrect'
+            }
         }
         const accessToken = await jwt.sign({
             id: foundUser.id,
             username
         }, process.env.SECRET_KEY,{ expiresIn: '1h' })
 
-        return res.status(200).json({
-            message: "Login completed!",
-            id: foundUser._id,
-            token: accessToken
-        })
+        return {
+            statusCode:200,
+            accessToken : accessToken,
+        }
     }
     catch(err){
         throw new Error(err.message);
