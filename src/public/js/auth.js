@@ -17,7 +17,7 @@ btnLogin.addEventListener('click', (e) => {
   }
 
   const obj = { username, password };
-
+  
   fetch('/v1/api/auth/login', {
     method: 'POST',
     headers: {
@@ -28,10 +28,10 @@ btnLogin.addEventListener('click', (e) => {
   })
     .then(res => res.json())
     .then(data => {
-      if (data.statusCode === 200) {
-        const accessToken = data.message.accessToken;
+      if (data.accessToken) {
+        const accessToken = data.accessToken;
         sessionStorage.setItem('token', accessToken);
-        window.location.href = '/chat';
+        window.location.href = '/v1/chat';
       } else {
         alert('Invalid username or password');
       }
