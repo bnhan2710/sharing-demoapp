@@ -60,7 +60,12 @@ body {
     display: block; 
     text-align: left; 
     float: left; 
+}
 
+.notification {
+    font-style: italic;
+    color: gray;
+    text-align: center;
 }
 
 #btn_logout {
