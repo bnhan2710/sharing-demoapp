@@ -1,6 +1,6 @@
 const { checkAuthToken } = require('../utils/checkAuthToken');
 
-var io = require('socket.io').listen(app);
+module.exports = (io) => {
 
 // Thiết lập sự kiện khi một client kết nối đến server
 io.on('connection', (client) => {
@@ -76,10 +76,11 @@ io.on('connection', (client) => {
                 // Phát tin nhắn đến tất cả client trong phòng chat
                 io.to(room).emit('thread', data);
             } catch (error) {
-                console.error('Error parsing message:', error);
+                console.error('Error sending message:', error);
             }
         } else {
             console.log('Client not authenticated');
         }
     });
 });
+}

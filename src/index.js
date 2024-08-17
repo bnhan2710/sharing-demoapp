@@ -3,7 +3,7 @@ const http = require("http");
 const dotenv = require("dotenv").config();
 const { Server } = require("socket.io");
 const path = require("path");
-
+const chatController = require('./controllers/chat.controllers');
 // Create a server
 const app = express();
 const server = http.createServer(app);
@@ -13,6 +13,8 @@ const io = new Server(server);
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 const route = require('./routes/index');
+
+chatController(io);
 
 //Set up middleware
 app.use(express.json());
