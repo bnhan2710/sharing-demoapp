@@ -91,10 +91,9 @@ button {
     background-color: #0056b3;
   }
   
-  /* Specific styling for the logout button */
   #btn_logout {
-    background-color: #dc3545; /* Red color for logout */
-    margin-left: 10px; /* Add some space between buttons */
+    background-color: #dc3545; 
+    margin-left: 10px; 
   }
   
   #btn_logout:hover {
