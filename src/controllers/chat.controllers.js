@@ -52,15 +52,14 @@ io.on('connection', (client) => {
             console.error('Error joining room:', error);
         }
     });
-
-    // Lắng nghe sự kiện 'join-room' từ client để tham gia phòng chat bằng ID phòng
-    client.on('join-room', (roomId, username) => {
+    //Dành cho video call
+    client.on('join-room', (roomId, userId) => {
         if (client.auth) {
             console.log(`Connecting to room id: ${roomId}`);
+            // Tham gia phòng chat với roomId
             client.join(roomId);
-            // Thông báo cho các client trong phòng về việc người dùng mới kết nối
             setTimeout(() => {
-                io.to(roomId).emit('user-connected', username);
+                io.to(roomId).emit('user-connected', userId);
             }, 1000);
         } else {
             console.log('Client not authenticated');

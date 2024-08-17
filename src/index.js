@@ -5,6 +5,7 @@ const { Server } = require("socket.io");
 const path = require("path");
 const chatController = require('./controllers/chat.controllers');
 // Create a server
+const { ExpressPeerServer } = require('peer'); 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
@@ -13,10 +14,13 @@ const io = new Server(server);
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 const route = require('./routes/index');
-
+const peerServer = ExpressPeerServer(server, {
+    debug: true
+});
 chatController(io);
 
 //Set up middleware
+app.use('/peerjs', peerServer); 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, './public')));
 

@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Video Chat App
+    link(rel="stylesheet", href="/css/call.css")
+    script(src="/socket.io/socket.io.js")
+    script(src="https://kit.fontawesome.com/c939d0e917.js")
+    script(src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js")
+    script.
+      const ROOM_ID = "#{roomId}";
+
+  body
+    .header
+      .logo
+        .header_back
+          i.fas.fa-angle-left
+        h3 Video Call
+    .main
+      .main_left
+        .videos_group
+          #video-grid
+        .options
+          .options_left
+            #stopVideo.options_button
+              i.fa.fa-video-camera
+            #muteButton.options_button
+              i.fa.fa-microphone
+            #disconnect.options_button.background_red
+              i.fa.fa-phone
+          .options_right
+            #inviteButton.options_button
+              i.fas.fa-user-plus
+    script(src="/js/call.client.js")
