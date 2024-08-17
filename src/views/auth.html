@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="../public/css/auth.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Authentication</h1>
+
+            <div class="form-section">
+                <h2>Login</h2>
+                <form action="/api/auth/login" method="post">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" name="username" required placeholder="Your username">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" required placeholder="Your password">
+                    </div>
+                    <button type="submit" id="btn_login">Login</button>
+                </form>
+            </div>
+
+            <div class="form-section">
+                <h2>Register</h2>
+                <form action="/api/auth/register" method="post">
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <input type="text" id="register-username" name="username" required placeholder="Your username">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" name="email" required placeholder="Your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" name="password" required placeholder="Your password">
+                    </div>
+                    <button type="submit" id="btn_register">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../public/js/auth.js"></script>
+</body>
+</html>
