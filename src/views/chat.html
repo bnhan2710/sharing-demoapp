@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <link rel="stylesheet" href="../public/css/chat.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+    <div id="controls">
+      <input type="text" id="room" placeholder="Room">
+      <button id="btn_join">Join</button>
+      <button id="btn_logout">
+        <i class="material">Log out</i>
+      </button>
+    </div>
+
+    <div id="chat-container">
+      <ul id="ul_message"></ul>
+      <div id="controls">
+        <input type="text" id="ip_message" placeholder="Message">
+        <button id="btn_send">
+          <i class="material-icons">&#xe163;</i>
+        </button>
+      </div>
+    </div>
+
+    <button id="btn_video_call">
+      <i class="material-icons">&#xe04b;</i>
+    </button>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../public/js/client.js"></script>
+  </body>
+</html>
