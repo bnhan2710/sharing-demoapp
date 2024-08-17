@@ -10,10 +10,15 @@ btnLogin.addEventListener('click', (e) => {
   e.preventDefault();
   const username = loginUsername.value.trim();
   const password = loginPassword.value.trim();
+
+  if (!username || !password) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
   const obj = { username, password };
 
-  console.log(obj);
-  fetch('/api/auth/login', {
+  fetch('/v1/api/auth/login', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -23,13 +28,11 @@ btnLogin.addEventListener('click', (e) => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log('Data:::', data);
       if (data.statusCode === 200) {
         const accessToken = data.message.accessToken;
         sessionStorage.setItem('token', accessToken);
         window.location.href = '/chat';
       } else {
-        console.log(data.message);
         alert('Invalid username or password');
       }
     })
@@ -44,9 +47,15 @@ btnRegister.addEventListener('click', (e) => {
   const username = registerUsername.value.trim();
   const email = registerEmail.value.trim();
   const password = registerPassword.value.trim();
+
+  if (!username || !email || !password) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
   const obj = { username, email, password };
 
-  fetch('/api/auth/register', {
+  fetch('/v1/api/auth/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
