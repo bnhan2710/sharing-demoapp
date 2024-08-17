@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Chat Application
+    link(rel="stylesheet" href="/css/style.css")
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+  body
+    #controls
+      input(type="text" id="room" placeholder="Room")
+      button(id="btn_join") Join
+      button(id="btn_logout")
+        i.material Log out
+
+    #chat-container
+      ul#ul_message
+      #controls
+        input(type="text" id="ip_message" placeholder="Message")
+        button(id="btn_send")
+          i.material-icons &#xe163;
+
+    button#btn_video_call
+      i.material-icons &#xe04b;
+    
+    script(src="/socket.io/socket.io.js")
+    script(src="/js/client.js")

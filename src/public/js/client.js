@@ -53,7 +53,7 @@ btn_join.addEventListener('click', () => {
 const sendmsg = () => {
     if(!myAuthToken){
         alert('You are not logged in, Please login first');
-        return window.location.href = '/api/auth/';
+        return window.location.href = '/v1/auth/';
     }
     const message = ip_message.value; 
     console.log({currentUserName, message});
@@ -106,21 +106,21 @@ ip_message.addEventListener('keydown', (e) => {
 btn_logout.addEventListener('click', () => {
     if(myAuthToken){
         sessionStorage.removeItem('token'); // Xóa token khỏi sessionStorage
-        window.location.href = '/api/auth/'; // Chuyển hướng về trang đăng nhập
+        window.location.href = '/v1/auth/'; // Chuyển hướng về trang đăng nhập
     } else {
         alert('You are not logged in, Please login first');
-        window.location.href = '/api/auth/';
+        window.location.href = '/v1/auth/';
     }
 });
 
 // Sự kiện khi người dùng nhấn nút "Video Call"
 btn_video_call.addEventListener('click', () => {
     if(myAuthToken){
-        window.location.href = '/api/video-call/'; // Chuyển hướng tới trang gọi video
+        window.location.href = '/v1/video-call/'; // Chuyển hướng tới trang gọi video
         sessionStorage.setItem('token', myAuthToken); // Lưu lại token để sử dụng tiếp
     } else {
         // Nếu người dùng chưa đăng nhập, yêu cầu đăng nhập
         alert('You are not logged in, Please login first');
-        window.location.href = '/api/auth/';
+        window.location.href = '/v1/auth/';
     }
 });

@@ -41,7 +41,7 @@ io.on('connection', (client) => {
                 const username = result.user.username;
                 console.log(`${username} joined room: ${room}`);
                 client.join(room);
-                // Thông báo cho các client trong phòng về việc người dùng mới kết nối
+                // thông báo server về việc người dùng mới kết nối 
                 io.to(room).emit('user-connected', username);
                 // Gửi tên người dùng về client khi tham gia phòng
                 client.emit('join', username);
