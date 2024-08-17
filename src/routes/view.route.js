@@ -8,5 +8,4 @@ router.get('/auth', (req, res) => {
     res.render('auth.pug')
 })
 
-
 module.exports = router;   
